@@ -1,0 +1,21 @@
+server:
+  port: 8080
+logging: 
+  file: /data/logs/springboot1-learn/application.log
+
+
+spring:
+  datasource: 
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_test?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate: 
+      ddl-auto: false
+    show-sql: true
+
+project: 
+  version: v1.0.0
+  name: yml测试开发版本
