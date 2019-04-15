@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "project")
-//@PropertySource(value = "classpath:mytest.yml",encoding="UTF-8")
-@PropertySource(value = "classpath:myconfig.properties")
+//@PropertySource(value = "classpath:myconfig.yml",encoding="UTF-8")
+//@PropertySource(value = "classpath:myconfig.properties")
 public class MyConfig {
     private String version;
     private String name;

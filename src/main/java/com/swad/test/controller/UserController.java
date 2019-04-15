@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.swad.test.entity.User;
 import com.swad.test.repository.UserRepository;
-import com.swad.test.service.UserService;
 
 import io.swagger.annotations.Api;
 
@@ -20,9 +19,6 @@ public class UserController {
 
      @Autowired
      private UserRepository userRepository;
-
-/*    @Autowired
-    private UserService userService;*/
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
