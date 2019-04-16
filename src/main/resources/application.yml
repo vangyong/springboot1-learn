@@ -3,7 +3,6 @@ server:
 logging: 
   file: /data/logs/springboot1-learn/application.log
 
-
 spring:
   datasource: 
     driverClassName: com.mysql.jdbc.Driver
@@ -15,7 +14,33 @@ spring:
     hibernate: 
       ddl-auto: false
     show-sql: true
+    
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    timeout: 3000
+    pool:
+      max-active: 32
+      max-wait: 3000
+      max-idle: 16
+      min-idle: 8
+    
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  
 
 project: 
   version: v1.0.0
   name: yml测试开发版本
+  
