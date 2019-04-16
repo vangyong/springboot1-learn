@@ -46,3 +46,4 @@ Thumbs.db
 # else
 .springBeans
 */.springBeans
+/.apt_generated_tests/
