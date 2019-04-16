@@ -112,14 +112,23 @@
 		 	</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- kafka -->
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka_2.11</artifactId>
+		    <version>2.2.0</version>
+		</dependency>
+		<dependency>
+             <groupId>org.springframework.kafka</groupId>
+             <artifactId>spring-kafka</artifactId>
+       </dependency>
+		
 	</dependencies>
 
 	<build>
 		<finalName>${artifactId}</finalName>
 		<plugins>
-			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
-				</plugin> -->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -128,7 +137,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>extlib/</classpathPrefix>
-							<mainClass>com.swad.h5server.H5serverApplication</mainClass>
+							<mainClass>com.swad.test.Springboot1Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
