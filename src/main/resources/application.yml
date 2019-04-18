@@ -38,7 +38,12 @@ spring:
       auto-commit-interval: 1000
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-  
+      
+  elasticsearch: 
+    jest:
+      uris:
+      - http://10.4.4.203:9200
+      read-timeout: 5000
 
 project: 
   version: v1.0.0
