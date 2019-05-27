@@ -1,4 +1,4 @@
-package cn.segema.learn.springboot1.entity;
+package cn.segema.learn.springboot1.domain;
 
 import java.io.Serializable;
 import java.math.BigInteger;

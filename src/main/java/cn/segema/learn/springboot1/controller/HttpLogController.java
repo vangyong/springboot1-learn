@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.learn.springboot1.entity.HttpLog;
+import cn.segema.learn.springboot1.domain.HttpLog;
 import cn.segema.learn.springboot1.repository.HttpLogRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

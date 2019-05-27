@@ -1,5 +1,6 @@
 package cn.segema.learn.springboot1.controller;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.learn.springboot1.entity.User;
+import cn.segema.learn.springboot1.domain.User;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -34,10 +35,10 @@ public class RedisController {
     private RedisTemplate redisTemplate;
 
     @GetMapping("/test1/{id}")
-    public ResponseEntity test1(@PathVariable Long id) {
+    public ResponseEntity test1(@PathVariable BigInteger id) {
         User user = new User();
-        user.setId(id);
-        user.setUsername("uname");
+        user.setUserId(id);
+        user.setUserName("uname");
         user.setPassword("password");
 //        ValueOperations valueOperations = redisTemplate.opsForValue();
 //        String key = User.class.getName()+":"+user.getId();
@@ -103,17 +104,17 @@ public class RedisController {
     }
     
     @GetMapping("/test2/{id}")
-    public User test2(@PathVariable Long id) {
+    public User test2(@PathVariable BigInteger id) {
         User user = new User();
-        user.setId(id);
-        user.setUsername("uname");
+        user.setUserId(id);
+        user.setUserName("uname");
         user.setPassword("password");
         ValueOperations valueOperations = redisTemplate.opsForValue();
         HashOperations hashOperations = redisTemplate.opsForHash();
         ListOperations<String,Object> listOperations = redisTemplate.opsForList();
         SetOperations<String,Object> setOperations = redisTemplate.opsForSet();
         ZSetOperations<String,Object> zsetOperations = redisTemplate.opsForZSet();
-        String key = User.class.getName()+":"+user.getId();
+        String key = User.class.getName()+":"+user.getUserId();
         valueOperations.set(key, user);
         redisTemplate.expire(key, 60, TimeUnit.SECONDS);
         User vo = (User) valueOperations.get(key);

@@ -12,10 +12,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * 描述：
- * <p>
- */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -47,17 +43,17 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.swad.h5server.controller"))// 扫描该包下的所有需要在Swagger中展示的API，@ApiIgnore注解标注的除外
+                .apis(RequestHandlerSelectors.basePackage("cn.segema.learn.springboot1.controller"))// 扫描该包下的所有需要在Swagger中展示的API，@ApiIgnore注解标注的除外
                 .paths(PathSelectors.any())
                 .build();
     }
 	
     private ApiInfo apiInfo() {
     	 return new ApiInfoBuilder()
-                 .title("构建H5 APIs")// API 标题
-                 .description("h5 APIs")// API描述
+                 .title("构建springboot APIs")// API 标题
+                 .description("springboot APIs")// API描述
                  .contact(new Contact("wangyong", "http://www.swad.com", "vangyong@126.com"))
-                 .version("0.0.1")// 版本号
+                 .version("1.0.0")// 版本号
                  .build();
     }
 }
