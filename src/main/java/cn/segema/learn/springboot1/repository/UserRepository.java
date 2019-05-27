@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -26,21 +27,20 @@ public interface UserRepository extends JpaRepository<User, BigInteger>,JpaSpeci
     List<User> getAllUsers();
     
     @Cacheable(key ="#id")
-    @Query(value = "select * from user where user_id =?1",nativeQuery = true)
+    @Query(value = "select * from tb_user where user_id =?1",nativeQuery = true)
     User findById(@Param("id") BigInteger id);
     
-    @CachePut(key = "#id")
-    @Query(value = "insert into tb_user(user_id,user_name,password) values(?1,?2,'123456')",nativeQuery = true)
+//    @CachePut(key = "#id")
+    @Query(value = "insert into tb_user(user_id,user_name,password) values(:#{id},:#{name},'123456')",nativeQuery = true)
     void createById(@Param("id")BigInteger id,@Param("name")String name);
     
     @CachePut(key = "#id")
     @Query(value = "update tb_user set user_name=?2 where user_id=:?1",nativeQuery = true)
     void updataById(BigInteger id,String name);
     
-   // @CacheEvict(key ="#id",allEntries=true)
+    @CacheEvict(key ="#id",allEntries=true)
     @Query(value = "delete from tb_user where user_id=?1",nativeQuery = true)
-    void deleteById(Long id);
-    
+    void deleteById(BigInteger id);
     
     
     @Query(value = "SELECT * FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!='',gender = :#{#user.gender},1=1) ORDER BY ?#{#pageable}",

@@ -49,18 +49,20 @@ public class UserController {
     }
 
     @ApiOperation(value = "新增用户", notes = "新增用户")
-    @GetMapping("/create")
-    public ResponseEntity createUser() {
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "path")})
+    @GetMapping("/create/{id}")
+    public ResponseEntity createUser(@PathVariable BigInteger id) {
         User user = new User();
-        user.setUserId(new BigInteger("100"));
-        user.setUserName("100name");
-        user.setPassword("100pass");
-        userRepository.createById(BigInteger.valueOf(100L), "hhhh");
+        user.setUserId(id);
+        user.setUserName("100name"+id);
+        user.setPassword("100pass"+id);
+        userRepository.createById(id, "hhhh");
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
+    public ResponseEntity deleteUser(@PathVariable BigInteger id) {
         userRepository.deleteById(id);
         return new ResponseEntity("success", HttpStatus.OK);
     }

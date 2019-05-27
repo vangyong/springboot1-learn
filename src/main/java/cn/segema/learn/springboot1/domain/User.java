@@ -19,7 +19,7 @@ public class User implements Serializable {
     
     @ApiModelProperty(value = "用户id")
     @Id
-    @GeneratedValue
+//    @GeneratedValue
     @Column(name = "user_id")
     private BigInteger userId;
     
