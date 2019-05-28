@@ -13,7 +13,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import cn.segema.learn.springboot1.constant.CommonConstant;
-import cn.segema.learn.springboot1.vo.CsocLogs;
+import cn.segema.learn.springboot1.vo.HttpLogVO;
 
 
 @Service
@@ -22,12 +22,12 @@ public class AttackerService {
     @Resource 
     private RedisTemplate redisTemplate;
     
-    public void putAttackerStatistics(CsocLogs csocLogs) {
+    public void putAttackerStatistics(HttpLogVO csocLogs) {
      
         
     }
     
-    public void putAttackerList(CsocLogs csocLogs) {
+    public void putAttackerList(HttpLogVO csocLogs) {
         Map attackerMap = new HashMap();
         attackerMap.put("src_ip", csocLogs.getSource_endpoint_ip());
         attackerMap.put("src_geo_city", csocLogs.getSource_geo_city());

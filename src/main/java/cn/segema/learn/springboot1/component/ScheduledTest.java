@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import cn.segema.learn.springboot1.vo.CsocLogs;
+import cn.segema.learn.springboot1.vo.HttpLogVO;
 
 @Component
 @EnableScheduling
@@ -23,7 +23,7 @@ public class ScheduledTest {
 	@Scheduled(cron = "*/5 * * * * ?")
 	public void send() {
 		String id = UUID.randomUUID().toString();
-		CsocLogs csocLogs = new CsocLogs();
+		HttpLogVO csocLogs = new HttpLogVO();
 		csocLogs.setEvent_typeA("应用程序");
 		csocLogs.setEvent_typeB("发现新漏洞");
 		csocLogs.setEvent_description("事件描述");

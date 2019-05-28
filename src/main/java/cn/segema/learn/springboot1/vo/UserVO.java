@@ -1,9 +1,15 @@
 package cn.segema.learn.springboot1.vo;
 
+import java.io.Serializable;
 import java.math.BigInteger;
-import io.swagger.annotations.ApiModelProperty;
 
-public class UserVO {
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@ApiModel("用户VO")
+@Data
+public class UserVO implements Serializable{
     
     @ApiModelProperty(value = "用户id")
     private BigInteger userId;

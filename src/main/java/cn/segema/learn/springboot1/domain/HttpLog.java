@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * 告警级别
- */
 @Entity
 @Table(name = "HTTP_LOG")
 public class HttpLog implements Serializable {
@@ -20,15 +17,12 @@ public class HttpLog implements Serializable {
     @Id
     @Column(name = "guid")
     private BigInteger guid;
-    
     private String guidStr;
 
     @Column(name = "plugin_id")
     private BigInteger pluginId;
-    
     @Column(name = "type_id")
     private Integer typeId;
-    
     @Column(name = "flow_id")
     private BigInteger flowId;
     private String flowIdStr;

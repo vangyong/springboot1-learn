@@ -12,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +27,9 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "用户管理")
 @RestController
 @RequestMapping("/user")
-@Api(value = "用户管理")
 public class UserController {
 
     @Autowired
@@ -44,20 +47,16 @@ public class UserController {
         @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "path")})
     @GetMapping("/find/{id}")
     public ResponseEntity findUser(@PathVariable BigInteger id) {
-        userRepository.findById(id);
-        return new ResponseEntity("success", HttpStatus.OK);
+        User user = userRepository.findById(id);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
     @ApiOperation(value = "新增用户", notes = "新增用户")
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "path")})
-    @GetMapping("/create/{id}")
-    public ResponseEntity createUser(@PathVariable BigInteger id) {
-        User user = new User();
-        user.setUserId(id);
-        user.setUserName("100name"+id);
-        user.setPassword("100pass"+id);
-        userRepository.createById(id, "hhhh");
+    @PostMapping("/create")
+    public ResponseEntity createUser(@RequestBody UserVO user) {
+        userRepository.createUser(user);
+        
+//        userRepository.addUser(user.getUserId(),user.getUserName(),user.getPassword());
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
@@ -67,14 +66,9 @@ public class UserController {
         return new ResponseEntity("success", HttpStatus.OK);
     }
 
-    @GetMapping("/update")
-    public ResponseEntity updateUser() {
-        User user = new User();
-        user.setUserId(new BigInteger("100"));
-        user.setUserName("100name");
-        user.setPassword("100pass");
-        userRepository.updataById(BigInteger.valueOf(100L), "new100name");
-
+    @PutMapping("/update")
+    public ResponseEntity updateUser(@RequestBody UserVO user) {
+        userRepository.updateUser(user);
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
