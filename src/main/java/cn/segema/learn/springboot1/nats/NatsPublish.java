@@ -1,12 +1,16 @@
 package cn.segema.learn.springboot1.nats;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 import io.nats.client.Connection;
 import io.nats.client.Nats;
 
+/**
+ * @category Nats发送端
+ * @author wangyong
+ * @date 2019/05/29
+ */
 public class NatsPublish {
     public static void main(String[] args){
         

@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 import io.nats.client.Connection;
 import io.nats.client.Nats;
 
+
+/**
+ * @category Nats消息发送端
+ * @author wangyong
+ * @date 2019/05/29
+ */
 @Component
 @EnableScheduling
 public class NatsScheduledPublish {
