@@ -14,8 +14,7 @@ import io.swagger.annotations.Api;
 public class NatsProducerController {
 
     @GetMapping(value = "/producer")
-    public ResponseEntity consume(){
-
+    public ResponseEntity producer(){
         return new ResponseEntity("success", HttpStatus.OK);
     }
 }

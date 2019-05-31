@@ -24,7 +24,6 @@ public class NatsPublish {
         } catch (Exception e) {
              e.printStackTrace();
         }
-       
         
     }
 }
