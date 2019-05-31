@@ -1,9 +1,12 @@
 package cn.segema.learn.springboot1.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.*;
+
+import com.alibaba.fastjson.JSON;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -42,5 +45,14 @@ public class User implements Serializable {
     @ApiModelProperty(value = "性别")
     @Column(name = "gender")
     private Integer gender;
+    
+    @ApiModelProperty(value = "年龄")
+    @Column(name = "age")
+    private BigDecimal age;
+    
+    @Override
+    public String toString() {
+            return JSON.toJSONString(this,true);
+    }
     
 }

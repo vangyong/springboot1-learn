@@ -123,6 +123,13 @@
 			<version>2.2.0</version>
 		</dependency>
 		
+		<!-- FastJson将Json转换Bean -->
+	    <dependency>
+	        <groupId>com.alibaba</groupId>
+	        <artifactId>fastjson</artifactId>
+	        <version>1.2.58</version>
+	    </dependency>
+		
 		<!-- 免去写get、set方法 -->
 		<dependency>
             <groupId>org.projectlombok</groupId>
