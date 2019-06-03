@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class HttpLogVO implements Serializable{
 
+    private static final long serialVersionUID = -468745631337338372L;
+
     private BigInteger guid;
     
     private String proto;

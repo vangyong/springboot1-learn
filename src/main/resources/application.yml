@@ -41,7 +41,7 @@ spring:
       min-idle: 8
     
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 10.10.19.53:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

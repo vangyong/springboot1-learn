@@ -4,23 +4,31 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.UUID;
 
-import org.apache.tomcat.jni.Thread;
-
 import com.alibaba.fastjson.JSON;
 
 import cn.segema.learn.springboot1.vo.HttpLogVO;
 import io.nats.client.Connection;
 import io.nats.client.Nats;
 
-/**
- * @category Nats发送端
- * @author wangyong
- * @date 2019/05/29
- */
-public class NatsPublish {
+public class MultThreadPublish {
+
     public static void main(String[] args) {
-        Connection nc;
         try {
+            MultThreadPublish multThreadPublish = new MultThreadPublish();
+            for(int i=0;i<10000;i++) {
+                MyThread myThread = multThreadPublish.new MyThread();
+                myThread.start();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    class MyThread extends Thread {
+
+        @Override
+        public void run() {
             String id = UUID.randomUUID().toString();
             HttpLogVO csocLog = new HttpLogVO();
             csocLog.setEvent_typeA("应用程序");
@@ -32,16 +40,17 @@ public class NatsPublish {
             csocLog.setDestination_endpoint_ip("dst_ip1");
             csocLog.setDestination_geo_city("dst_geo_city1");
             csocLog.setDestination_geo_countryCode("dst_geo_countryCode1");
-            String msg = System.currentTimeMillis() + JSON.toJSONString(csocLog);
-
-            nc = Nats.connect("nats://10.10.19.53:4222");
-            nc.publish("subject", msg.getBytes(StandardCharsets.UTF_8));
-            nc.flush(Duration.ofSeconds(5));
-            nc.close();
-            System.out.println("sendsucess:");
-        } catch (Exception e) {
-            e.printStackTrace();
+            String msg = System.currentTimeMillis() + JSON.toJSONString(csocLog)+Thread.currentThread().getName();
+            try {
+                Connection nc =Nats.connect("nats://10.10.19.53:4222");
+                nc.publish("subject", msg.getBytes(StandardCharsets.UTF_8));
+                nc.flush(Duration.ofSeconds(5));
+                nc.close();
+                System.out.println("send success");
+            } catch (Exception e) {
+                 e.printStackTrace();
+            } 
+            
         }
     }
-
 }

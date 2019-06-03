@@ -22,7 +22,7 @@ public class NatsSubscribe {
 
         Connection nc;
         try {
-            nc = Nats.connect("nats://localhost:4222");
+            nc = Nats.connect("nats://10.10.19.53:4222");
             Dispatcher d = nc.createDispatcher((msg) -> {
                 String response = new String(msg.getData(), StandardCharsets.UTF_8);
                 System.out.println("response:");

@@ -9,8 +9,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import com.alibaba.fastjson.JSON;
+import com.google.gson.JsonObject;
+
 import cn.segema.learn.springboot1.vo.HttpLogVO;
-//
+
 //@Component
 //@EnableScheduling
 //public class KafkaScheduledProducer {
@@ -32,7 +35,7 @@ import cn.segema.learn.springboot1.vo.HttpLogVO;
 //		csocLog.setDestination_geo_city("dst_geo_city1");
 //		csocLog.setDestination_geo_countryCode("dst_geo_countryCode1");
 //		
-//		ListenableFuture future = kafkaTemplate.send("test", id,csocLog);
+//		ListenableFuture future = kafkaTemplate.send("test", id,JSON.toJSONString(csocLog));
 //		future.addCallback(o -> System.out.println("send-消息发送成功：" + csocLog),
 //				throwable -> System.out.println("消息发送失败：" + csocLog));
 //	}
