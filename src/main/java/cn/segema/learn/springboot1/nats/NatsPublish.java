@@ -19,7 +19,7 @@ import io.nats.client.Nats;
  */
 public class NatsPublish {
     public static void main(String[] args) {
-        Connection nc;
+        Connection nc = null;
         try {
             String id = UUID.randomUUID().toString();
             HttpLogVO csocLog = new HttpLogVO();
@@ -41,6 +41,14 @@ public class NatsPublish {
             System.out.println("sendsucess:");
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if(nc!=null) {
+                try {
+                    nc.close();
+                } catch (InterruptedException e) {
+                     e.printStackTrace();
+                }
+            }
         }
     }
 
