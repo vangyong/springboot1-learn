@@ -1,13 +1,19 @@
 package cn.segema.learn.springboot1.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
+
+import cn.segema.learn.springboot1.vo.HttpLogVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -15,17 +21,30 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/kafka")
 public class KafkaProducerController {
+
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
     @ApiOperation(value = "发送消息")
     @GetMapping("/producer")
-    public ResponseEntity producer(){
-        String value =
-            "{\"code\":200,\"dataVersion\":\"17q1\",\"message\":\"\",\"id\":\"364f79f28eea48eefeca8c85477a10d3\",\"source\":\"didi\",\"tripList\":[{\"subTripList\":[{\"startTimeStamp\":1519879598,\"schemeList\":[{\"distance\":0.0,\"ids\":\"94666702,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519879598,\"subTripId\":0},{\"startTimeStamp\":1519879727,\"schemeList\":[{\"distance\":1395.0,\"ids\":\"94666729,7298838,7291709,7291706,88613298,88613297,7297542,7297541,94698785,94698786,94698778,94698780,94698779,94698782,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519879812,\"subTripId\":1},{\"startTimeStamp\":1519879836,\"schemeList\":[{\"distance\":0.0,\"ids\":\"54123007,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519879904,\"subTripId\":2},{\"startTimeStamp\":1519879959,\"schemeList\":[{\"distance\":0.0,\"ids\":\"54190443,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519879959,\"subTripId\":3},{\"startTimeStamp\":1519880088,\"schemeList\":[{\"distance\":2885.0,\"ids\":\"94698824,94698822,94698789,94698786,54123011,54123012,54123002,94698763,94698727,94698722,94698765,54123006,54123004,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519880300,\"subTripId\":4},{\"startTimeStamp\":1519880393,\"schemeList\":[{\"distance\":2398.0,\"ids\":\"7309441,7303680,54123061,54123038,7309478,7309477,94698204,94698203,94698273,94698274,94698288,94698296,94698295,94698289,94698310,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519880636,\"subTripId\":5},{\"startTimeStamp\":1519881064,\"schemeList\":[{\"distance\":35.0,\"ids\":\"7309474,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519881204,\"subTripId\":6},{\"startTimeStamp\":1519881204,\"schemeList\":[{\"distance\":28.0,\"ids\":\"7309476,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519881266,\"subTripId\":7},{\"startTimeStamp\":1519881291,\"schemeList\":[{\"distance\":463.0,\"ids\":\"7303683,\",\"schemeId\":0,\"linkList\":[{\"score\":72,\"distance\":1,\"gpsList\":[{\"origLonLat\":\"116.321343,40.43242\",\"grabLonLat\":\"112.32312,40.32132\",\"timestamp\":1515149926000}]}]}],\"endTimeStamp\":1519881329,\"subTripId\":8}],\"startTimeStamp\":1519879350,\"unUseTime\":1201,\"totalTime\":2049,\"endTimeStamp\":1519881399,\"tripId\":0}]}";
+    public ResponseEntity producer() {
+        String id = UUID.randomUUID().toString();
+        HttpLogVO csocLog = new HttpLogVO();
+        csocLog.setEvent_typeA("应用程序");
+        csocLog.setEvent_typeB("发现新漏洞");
+        csocLog.setEvent_description("事件描述");
+        csocLog.setSource_endpoint_ip("src_ip1");
+        csocLog.setSource_geo_city("src_geo_city1");
+        csocLog.setSource_geo_countryCode("src_countryCode");
+        csocLog.setDestination_endpoint_ip("dst_ip1");
+        csocLog.setDestination_geo_city("dst_geo_city1");
+        csocLog.setDestination_geo_countryCode("dst_geo_countryCode1");
+        String msg = System.currentTimeMillis() + JSON.toJSONString(csocLog);
         for (int i = 1; i <= 2; i++) {
-            kafkaTemplate.send("test", value);
-            System.out.println("send message success");
+            ListenableFuture future = kafkaTemplate.send("test1", msg);
+            future.addCallback(o -> System.out.println("send-消息发送成功：" + msg),
+                throwable -> System.out.println("消息发送失败：" + msg));
+
         }
         return new ResponseEntity("success", HttpStatus.OK);
     }

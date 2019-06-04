@@ -19,7 +19,7 @@ public class MultThreadPublish {
                 MyThread myThread = multThreadPublish.new MyThread();
                 myThread.start();
             }
-            
+            System.out.println("main thread end:"+System.currentTimeMillis());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class MultThreadPublish {
                 nc.publish("subject", msg.getBytes(StandardCharsets.UTF_8));
                 nc.flush(Duration.ofSeconds(5));
                 nc.close();
-                System.out.println("send success");
+                System.out.println(Thread.currentThread().getName()+" send success:"+System.currentTimeMillis());
             } catch (Exception e) {
                  e.printStackTrace();
             }finally {
