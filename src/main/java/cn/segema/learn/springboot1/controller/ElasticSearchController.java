@@ -3,12 +3,10 @@ package cn.segema.learn.springboot1.controller;
 import java.io.IOException;
 import java.util.Date;
 
-import org.apache.http.HttpHost;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.admin.indices.alias.Alias;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
@@ -40,8 +38,8 @@ public class ElasticSearchController {
     @Autowired
     private JestClient jestClient;
     
-    private RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
-        RestClient.builder(new HttpHost("localhost", 9200, "http")));
+    @Autowired
+    private RestHighLevelClient restHighLevelClient;
 
     @GetMapping("/test1/{statisticType}")
     public ResponseEntity test1(@PathVariable String  statisticType) {
