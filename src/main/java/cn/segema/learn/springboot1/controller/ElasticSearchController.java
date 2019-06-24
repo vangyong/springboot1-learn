@@ -75,12 +75,12 @@ public class ElasticSearchController {
 
     @GetMapping("/test2/{searchContent}")
     public ResponseEntity test2(@PathVariable String  searchContent) {
-        //String searchContent ="WEB漏洞扫描";
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        //searchSourceBuilder.query(QueryBuilders.queryStringQuery(searchContent));
-        //searchSourceBuilder.field("event_description");
-        searchSourceBuilder.query(QueryBuilders.matchQuery("event_description",searchContent));
-        Search search = new Search.Builder(searchSourceBuilder.toString()).addIndex("csoc-alert-*").addType("logs").build();
+        searchSourceBuilder.from(0);
+        searchSourceBuilder.size(20);
+       // searchSourceBuilder.query(QueryBuilders.matchQuery("alarm_level",searchContent));
+        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        Search search = new Search.Builder(searchSourceBuilder.toString()).addIndex("index_nta_alarm_log_*").addType("type_nta_alarm_log").build();
         SearchResult searchResult = null;
          try {
              searchResult = jestClient.execute(search);

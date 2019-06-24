@@ -12,4 +12,4 @@ http://localhost:8080/kafka/producer
 ElasticSearch测试
 http://localhost:8080/es/test1/30d
 
-http://localhost:8080/es/test2/WEB漏洞扫描
+http://localhost:8080/es/test2/高危
