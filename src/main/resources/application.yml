@@ -6,7 +6,7 @@ logging:
 spring:
   datasource: 
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/spring_test?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/mytest?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
   jpa:
@@ -54,11 +54,11 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       
-  elasticsearch: 
-    jest:
-      uris:
-      - http://localhost:9200
-      read-timeout: 5000
+#  elasticsearch: 
+#    jest:
+#      uris:
+#      - http://localhost:9200
+#      read-timeout: 5000
 
 project: 
   version: v1.0.0

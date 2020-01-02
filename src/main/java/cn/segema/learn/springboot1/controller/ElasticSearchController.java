@@ -38,8 +38,8 @@ public class ElasticSearchController {
     @Autowired
     private JestClient jestClient;
     
-    @Autowired
-    private RestHighLevelClient restHighLevelClient;
+    //@Autowired
+    //private RestHighLevelClient restHighLevelClient;
 
     @GetMapping("/test1/{statisticType}")
     public ResponseEntity test1(@PathVariable String  statisticType) {
@@ -124,7 +124,7 @@ public class ElasticSearchController {
       //可选参数
         request.timeout(TimeValue.timeValueMinutes(2));//超时,等待所有节点被确认(使用TimeValue方式)
         //同步执行
-        CreateIndexResponse createIndexResponse = restHighLevelClient.indices().create(request);
+        //CreateIndexResponse createIndexResponse = restHighLevelClient.indices().create(request);
         
         //异步方法不会阻塞并立即返回。
         ActionListener<CreateIndexResponse> listener = new ActionListener<CreateIndexResponse>() {
@@ -137,9 +137,10 @@ public class ElasticSearchController {
                 //如果失败，则调用onFailure方法。
             }
         };
-        restHighLevelClient.indices().createAsync(request, listener);//要执行的CreateIndexRequest和执行完成时要使用的ActionListener
+        //restHighLevelClient.indices().createAsync(request, listener);//要执行的CreateIndexRequest和执行完成时要使用的ActionListener
         
-        return new ResponseEntity(createIndexResponse, HttpStatus.OK);
+        //return new ResponseEntity(createIndexResponse, HttpStatus.OK);
+        return new ResponseEntity(null, HttpStatus.OK);
     }
     
 
@@ -183,7 +184,7 @@ public class ElasticSearchController {
                 //如果失败，则调用onFailure方法。
             }
         };
-        restHighLevelClient.indices().createAsync(request, listener);//要执行的CreateIndexRequest和执行完成时要使用的ActionListener
+        //restHighLevelClient.indices().createAsync(request, listener);//要执行的CreateIndexRequest和执行完成时要使用的ActionListener
         
         return new ResponseEntity("success", HttpStatus.OK);
     }
