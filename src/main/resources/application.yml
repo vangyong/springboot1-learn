@@ -9,6 +9,13 @@ spring:
     url: jdbc:mysql://localhost:3306/mytest?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
+    hikari:
+       minimum-idle:25
+       maximum-pool-size:55
+       connection-test-query:SELECT 1
+       max-lifetime:1800000
+       connection-timeout:30000
+       pool-name:DatebookHikariCP
   jpa:
     show-sql: true
     hibernate: 
@@ -32,7 +39,7 @@ spring:
     database: 0
     host: localhost
     port: 6379
-    password:
+    password: csoc@nta1234
     timeout: 3000
     pool:
       max-active: 32
