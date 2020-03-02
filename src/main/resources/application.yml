@@ -6,7 +6,7 @@ logging:
 spring:
   datasource: 
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mytest?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/mytest?prepStmtCacheSize=517&cachePrepStmts=true&autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password: root
     hikari:
