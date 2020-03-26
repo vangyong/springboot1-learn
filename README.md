@@ -4,6 +4,8 @@ http://localhost:8080/redis/test1/3
 数据库配置映射
 http://localhost:8080/user/all
 
+http://localhost:8080/user/page
+
 
 kafka测试
 http://localhost:8080/kafka/producer

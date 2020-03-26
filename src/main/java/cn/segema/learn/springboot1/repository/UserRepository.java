@@ -2,6 +2,7 @@ package cn.segema.learn.springboot1.repository;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -56,8 +57,14 @@ public interface UserRepository extends JpaRepository<User, BigInteger>,JpaSpeci
     void deleteById(BigInteger id);
     
     
-    @Query(value = "SELECT * FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!='',gender = :#{#user.gender},1=1) ORDER BY ?#{#pageable}",
-               countQuery = "SELECT count(*) FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!='',gender = :#{#user.gender},1=1)",
+    @Query(value = "SELECT * FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1)  ORDER BY ?#{#pageable}",
+               countQuery = "SELECT count(*) FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) ",
                nativeQuery = true)
     public Page<User> findByPage(@Param("user") UserVO user, Pageable pageable);
+    
+    
+//    @Query(value = "SELECT user_id as userId,user_name as userName,password as password FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) ORDER BY ?#{#pageable}",
+//            countQuery = "SELECT count(*) FROM tb_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) ",
+//            nativeQuery = true)
+//    public Page<UserVO> findByPage(@Param("user") UserVO user, Pageable pageable);
 }

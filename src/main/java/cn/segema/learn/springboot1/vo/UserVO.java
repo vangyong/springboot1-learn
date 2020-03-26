@@ -19,5 +19,5 @@ public class UserVO implements Serializable{
     
     @ApiModelProperty(value = "密码")
     private String password;
-
+    
 }

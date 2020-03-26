@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.JsonObject;
 
 import cn.segema.learn.springboot1.vo.HttpLogVO;
 

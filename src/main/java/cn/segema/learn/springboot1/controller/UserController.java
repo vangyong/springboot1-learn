@@ -2,6 +2,7 @@ package cn.segema.learn.springboot1.controller;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -83,6 +84,8 @@ public class UserController {
         Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
         Pageable pageable = new PageRequest(page - 1, limit, sortOrder);
         Page<User> userPage = userRepository.findByPage(userVO, pageable);
+//        Page<UserVO> userPage = userRepository.findByPage(userVO, pageable);
+//        Page<Map<String,Object>> userPage = userRepository.findByPage(userVO, pageable);
         return new ResponseEntity(userPage, HttpStatus.OK);
     }
 }
